@@ -15,7 +15,7 @@ enter = raw_input("Press Enter to continue... ")
 #Get date
 print('\n')
 currentDate = datetime.now().strftime('%Y-%m-%d')
-with open(currentDate, 'a') as file:
+with open(currentDate, 'w') as file:
     file.write('\n')
     file.write(currentDate)
     file.write('\n')
