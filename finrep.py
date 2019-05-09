@@ -1,6 +1,5 @@
 #Importing
 from datetime import datetime
-datetime.now().strftime('%Y-%m-%d')
 
 ####################################################################################
 
@@ -12,7 +11,7 @@ print("*****************************************************************")
 print('\n')
 enter = raw_input("Press Enter to continue... ")
 
-#Get date
+#Get date, write to file
 print('\n')
 currentDate = datetime.now().strftime('%Y-%m-%d')
 with open(currentDate, 'w') as file:
@@ -32,12 +31,13 @@ with open(currentDate, 'a') as file:
 enter = raw_input("Let's begin gather information about your assets. Press Enter to continue... ")
 print('\n')
 
-enter = raw_input("Would you like to add an asset? Press Enter to do so, or type 'next' and press Enter to continue. ")
+#Confirm need to add asset, set accum to zero, test for 'no'
+enter = raw_input("Would you like to add an asset? Press Enter to do so, or type 'no' and press Enter to continue. ")
 print('\n')
-
 assetAccum = 0
-while enter != "next":
+while enter != "no":
     
+    #Ask for asset name until value provided
     assetName = raw_input("What is the name of the asset? ")
     while assetName == '':
         assetName = raw_input("What is the name of the asset? ")
@@ -45,6 +45,7 @@ while enter != "next":
         file.write(str(assetName))
         file.write(": ")
 
+    #Initialize asset value at zero, ask for correct value
     assetValue = 0
     while assetValue == '' or assetValue == 0:
         assetValue = input("What is the value of the asset? ")
@@ -52,9 +53,10 @@ while enter != "next":
     with open(currentDate, 'a') as file:
         file.write(str(assetValue))
         file.write('\n')
-
     print('\n')
-    enter = raw_input("Would you like to add another asset? Press Enter to do so, or type 'next' and press Enter to continue. ")
+
+    #Determine if exit loop
+    enter = raw_input("Would you like to add another asset? Press Enter to do so, or type 'no' and press Enter to continue. ")
     print('\n')
 
 ####################################################################################
@@ -69,12 +71,13 @@ with open(currentDate, 'a') as file:
 enter = raw_input("Ok. Now, let's gather information about your liabilities. Press Enter to continue... ")
 print('\n')
 
-enter = raw_input("Would you like to add a liability? Press Enter to do so, or type 'next' and press Enter to continue. ")
+#Confirm need to add liability, set accum to zero, test for 'no'
+enter = raw_input("Would you like to add a liability? Press Enter to do so, or type 'no' and press Enter to continue. ")
 print('\n')
-
 liabilityAccum = 0
-while enter != "next":
+while enter != "no":
     
+    #Ask for liabililty name until a value is provided
     liabilityName = raw_input("What is the name of the liability? ")
     while liabilityName == '':
         liabilityName = raw_input("What is the name of the liability? ")
@@ -82,14 +85,16 @@ while enter != "next":
         file.write(str(liabilityName))
         file.write(": ")
     
+    #Ask for value of liability
     liabilityValue = input("What is the value of the liability? ")
     liabilityAccum = liabilityAccum + liabilityValue
     with open(currentDate, 'a') as file:
         file.write(str(liabilityValue))
         file.write('\n')
-
     print('\n')
-    enter = raw_input("Would you like to add another liability? Press Enter to do so, or type 'next' and press Enter to continue. ")
+
+    #Determine if exit loop
+    enter = raw_input("Would you like to add another liability? Press Enter to do so, or type 'no' and press Enter to continue. ")
     print('\n')
 
 ####################################################################################
@@ -100,8 +105,10 @@ with open(currentDate, 'a') as file:
     file.write("***NET WORTH***")
     file.write('\n')
 
+#Calculate net worth
 netWorth = assetAccum - liabilityAccum
 
+#Write totals and net worth to file
 with open(currentDate, 'a') as file:
     
     file.write("Total Assets: ")
