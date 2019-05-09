@@ -124,4 +124,6 @@ print("Your total liabilities are " + str(liabilityAccum))
 print("Your net worth is " + str(netWorth))
 print('\n')
 enter = raw_input("A report has been generated using the information provided. Press Enter to terminate the program... ")
+print('\n')
+print("*****************************************************************")
 
