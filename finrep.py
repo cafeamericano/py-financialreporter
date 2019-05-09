@@ -37,15 +37,22 @@ print('\n')
 
 assetAccum = 0
 while enter != "next":
+    
     assetName = raw_input("What is the name of the asset? ")
+    while assetName == '':
+        assetName = raw_input("What is the name of the asset? ")
     with open(currentDate, 'a') as file:
         file.write(str(assetName))
         file.write(": ")
-    assetValue = input("What is the value of the asset? ")
+
+    assetValue = 0
+    while assetValue == '' or assetValue == 0:
+        assetValue = input("What is the value of the asset? ")
     assetAccum = assetAccum + assetValue
     with open(currentDate, 'a') as file:
         file.write(str(assetValue))
         file.write('\n')
+
     print('\n')
     enter = raw_input("Would you like to add another asset? Press Enter to do so, or type 'next' and press Enter to continue. ")
     print('\n')
@@ -67,15 +74,20 @@ print('\n')
 
 liabilityAccum = 0
 while enter != "next":
+    
     liabilityName = raw_input("What is the name of the liability? ")
+    while liabilityName == '':
+        liabilityName = raw_input("What is the name of the liability? ")
     with open(currentDate, 'a') as file:
         file.write(str(liabilityName))
         file.write(": ")
+    
     liabilityValue = input("What is the value of the liability? ")
     liabilityAccum = liabilityAccum + liabilityValue
     with open(currentDate, 'a') as file:
         file.write(str(liabilityValue))
         file.write('\n')
+
     print('\n')
     enter = raw_input("Would you like to add another liability? Press Enter to do so, or type 'next' and press Enter to continue. ")
     print('\n')
