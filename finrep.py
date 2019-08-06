@@ -1,6 +1,21 @@
 #Importing
 from datetime import datetime
 
+#FUNCTIONS###################################################################################
+
+#Make header function
+def makeHeader(arg):
+    with open(currentDate, 'a') as file:
+        file.write('\n')
+        file.write("***" + arg + "***")
+        file.write('\n')
+
+#Write totals function
+def writeTotal(label, variable):
+    file.write(label + ": ")
+    file.write(str(variable))
+    file.write('\n')
+
 ####################################################################################
 
 #Welcome
@@ -22,10 +37,7 @@ with open(currentDate, 'w') as file:
 ####################################################################################
 
 #Asset header
-with open(currentDate, 'a') as file:
-    file.write('\n')
-    file.write("***ASSETS***")
-    file.write('\n')
+makeHeader("ASSETS")
 
 #Get asset information
 enter = raw_input("Let's begin gather information about your assets. Press Enter to continue... ")
@@ -62,10 +74,7 @@ while enter != "no":
 ####################################################################################
 
 #Liability header
-with open(currentDate, 'a') as file:
-    file.write('\n')
-    file.write("***LIABILITIES***")
-    file.write('\n')
+makeHeader("LIABILITIES")
 
 #Get liability information
 enter = raw_input("Ok. Now, let's gather information about your liabilities. Press Enter to continue... ")
@@ -100,28 +109,16 @@ while enter != "no":
 ####################################################################################
 
 #Net worth header
-with open(currentDate, 'a') as file:
-    file.write('\n')
-    file.write("***NET WORTH***")
-    file.write('\n')
+makeHeader("NET WORTH")
 
 #Calculate net worth
 netWorth = assetAccum - liabilityAccum
 
 #Write totals and net worth to file
 with open(currentDate, 'a') as file:
-    
-    file.write("Total Assets: ")
-    file.write(str(assetAccum))
-    file.write('\n')
-
-    file.write("Total Liabilities: ")
-    file.write(str(liabilityAccum))
-    file.write('\n')
-
-    file.write("Net Worth: ")
-    file.write(str(netWorth))
-    file.write('\n')
+    writeTotal("Total Assets", assetAccum)
+    writeTotal("Total Liabilities", liabilityAccum)
+    writeTotal("Net Worth", netWorth)
 
 ####################################################################################
 
